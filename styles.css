@@ -724,8 +724,8 @@ td.description {
   .burger {
     display: block;
   }
-  .header_top .logo {
-    position: absolute;
+  .header_top a .logo {
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -1073,9 +1073,8 @@ td.description {
     background-color: var(--footer);
   }
   
-  .header_top .logo {
-    position: absolute;
-    left: 5.8rem;
+  .header_top a .logo {
+    position: relative;
   }
   .header_top > nav {
     position: absolute;
