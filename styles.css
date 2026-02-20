@@ -769,6 +769,7 @@ td.description {
     width: 100%;
     padding: 2.4rem;
     padding-top: 8.4rem;
+    padding-bottom: 5rem;
     max-height: calc(100vh - 6.4rem);
     overflow-y: auto;
     border-radius: 0 0 8px 8px;
@@ -782,6 +783,7 @@ td.description {
     display: grid;
     row-gap: 6.8rem;
     text-transform: uppercase;
+
   }
   body.menu-open header {
     background-color: var(--black);
