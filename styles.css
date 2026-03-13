@@ -104,15 +104,178 @@ header.hide {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 }
-button.header_shop {
+
+/* Стилі до кошика */
+/* .cart-icon {
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.cart-icon svg */
+.header_shop {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 .header_shop svg:hover path {
   fill: var(--dark-orange);
   transition: 300ms ease-in-out;
 }
+#cart-count {
+  background-color: var(--dark-orange);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0.2rem 0.6rem;
+  position: absolute;
+  top: -0.8rem;
+  right: -1rem;
+  min-width: 1.8rem;
+  text-align: center;
+}
+.cart-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--white);
+  border-radius: 0.8rem;
+  padding: 3.1rem 3.2rem;
+  width: 32.7rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0,0,0,0.1);
+  z-index: 1000;
+  margin-top: 3.2rem;
+  margin-right: 16.5rem;
+}
+.cart-dropdown.hidden {
+  /* display: none; */
+}
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3.2rem;
+}
+.cart-header h3 {
+  font-size: 1.8rem;
+  letter-spacing: 1.29px;
+  text-transform: uppercase;
+}
+#remove-all {
+  background: none;
+  border: none;
+  color: var(--black);
+  opacity: 0.5;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+#remove-all:hover {
+  color: var(--dark-orange);
+  transition: 300ms ease-in-out;
+  opacity: 1;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.2rem;
+}
+.cart-item-img {
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 0.8rem;
+  margin-right: 1.6rem;
+}
+.cart-item-details {
+  flex: 1;
+}
+.cart-item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+}
+.cart-item-price {
+  font-size: 1.4rem;
+  opacity: 0.5;
+  color: var(--black);
+}
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  background: var(--dark-gray);
+}
+.cart-item-quantity button {
+  background: none;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0.25;
+}
+.cart-item-quantity button:hover {
+  color: var(--dark-orange);
+}
+.cart-item-quantity span {
+  font-size: 1.3rem;
+  padding: 0.7rem 1.25rem;
+  font-weight: bold;
+  color: var(--black);
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  color: var(--gray);
+}
+.cart-total span:last-child {
+  font-size: 1.8rem;
+  color: var(--black);
+} 
+#checkout {
+  background-color: var(--dark-orange);
+  color: var(--white);
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  justify-content: center;
+  padding: 1.5rem 3.5rem;
+  text-align: center;
+  display: block;
+  margin-top: 2.4rem;
+}
+#checkout:hover {
+  background-color: var(--light-orange);
+  transition: 300ms ease-in-out;
+}
+.cart-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.6rem;
+  color: var(--gray);
+}
+.cart-empty a {
+   margin: 1rem auto 0;
+   display: block;
+   width: fit-content;
+   color: var(--light-orange);
+   text-decoration: underline;
+}
+.cart-empty a:hover {
+  color: var(--dark-orange);
+  transition: 300ms ease-in-out;
+}
+
+
+
 .hero {
   background-color: var(--back-black);
   min-height: 100vh;
@@ -712,7 +875,30 @@ td.description {
 .categ .btn {
   align-self: center;
 }
- 
+
+/* Checkout */
+.checkout_main {
+  background-color: var(--dark-gray);
+}
+.checkout {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--white);
+  border-radius: 0.8rem;
+}
+.checkout-container {
+  max-width: 73rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4.1rem;
+}
+.checkout h1 {
+  font-size: 3.2rem;
+  line-height: 3.6rem;
+  letter-spacing: 1.14px;
+  text-transform: uppercase;
+}
 @media (max-width: 576px) {
   header {
     background-color: var(--footer);

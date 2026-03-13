@@ -65,8 +65,9 @@ window.addEventListener('scroll', () => {
 
 const quantityInput = document.querySelector('.quantity input');
 const qtyButtons = document.querySelectorAll('.qty-btn');
-const addToCartBtn = document.getElementById('addToCart');
+// const addToCartBtn = document.getElementById('addToCart');
 
+if (qtyButtons.length > 0) {
 qtyButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     let value = parseInt(quantityInput.value);
@@ -80,15 +81,23 @@ qtyButtons.forEach(btn => {
     }
   });
 });
+}
 
-addToCartBtn.addEventListener('click', (e) => {
-  e.preventDefault(); // щоб <a> не скакала
+document.addEventListener('DOMContentLoaded', () =>
+  
+  const cartIcon = document.querySelector('.cart-icon');
+  const cartCount = document.getElementById('cart-dropdown');
+  const cartItemsContainer = document.getElementById('cart-items');
+  
+ )
+// addToCartBtn.addEventListener('click', (e) => {
+//   e.preventDefault(); // щоб <a> не скакала
 
-  const quantity = parseInt(quantityInput.value);
+//   const quantity = parseInt(quantityInput.value);
 
-  console.log('Add to cart:', quantity);
-  // тут далі:
-  // addToCart(productId, quantity)
-});
+//   console.log('Add to cart:', quantity);
+//   // тут далі:
+//   // addToCart(productId, quantity)
+// });
 
 
