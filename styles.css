@@ -106,7 +106,8 @@ header.hide {
 }
 
 /* Стилі до кошика */
-/* .cart-icon {
+
+.cart-icon {
   background: none;
   border: none;
   cursor: pointer;
@@ -114,16 +115,7 @@ header.hide {
   display: flex;
   align-items: center;
 }
-.cart-icon svg */
-.header_shop {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.header_shop svg:hover path {
+.cart-icon svg:hover path {
   fill: var(--dark-orange);
   transition: 300ms ease-in-out;
 }
@@ -154,7 +146,7 @@ header.hide {
   margin-right: 16.5rem;
 }
 .cart-dropdown.hidden {
-  /* display: none; */
+   display: none; 
 }
 .cart-header {
   display: flex;
@@ -273,8 +265,6 @@ header.hide {
   color: var(--dark-orange);
   transition: 300ms ease-in-out;
 }
-
-
 
 .hero {
   background-color: var(--back-black);
