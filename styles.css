@@ -265,6 +265,9 @@ header.hide {
   color: var(--dark-orange);
   transition: 300ms ease-in-out;
 }
+.hidden {
+  display: none;
+}
 
 .hero {
   background-color: var(--back-black);
