@@ -1,77 +1,90 @@
 // ==================== МОБІЛЬНЕ МЕНЮ ====================
-const burger = document.querySelector('.burger');
-const mobileMenu = document.getElementById('mobile-menu');
+const burger = document.querySelector(".burger");
+const mobileMenu = document.getElementById("mobile-menu");
+const cartDropdown = document.getElementById("cart-dropdown");
+const overlay = document.getElementById("overlay");
 
 let lastFocused = null;
 
+function openMenu() {
+  if (!burger || !mobileMenu) return;
+
+  lastFocused = document.activeElement;
+  mobileMenu.classList.add("open");
+  document.body.classList.add("menu-open");
+  mobileMenu.setAttribute("aria-hidden", "false");
+  burger.setAttribute("aria-expanded", "true");
+
+  if (overlay) overlay.classList.add("hidden");
+
+  const firstFocusable = mobileMenu.querySelector("a, button");
+  if (firstFocusable) firstFocusable.focus();
+}
+
+function closeMenu() {
+  if (!burger || !mobileMenu) return;
+
+  mobileMenu.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  mobileMenu.setAttribute("aria-hidden", "true");
+  burger.setAttribute("aria-expanded", "false");
+
+  if (lastFocused) lastFocused.focus();
+}
 if (burger && mobileMenu) {
-  function openMenu() {
-    lastFocused = document.activeElement;
-    mobileMenu.classList.add('open');
-    document.body.classList.add('menu-open');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    burger.setAttribute('aria-expanded', 'true');
-    const firstFocusable = mobileMenu.querySelector('a, button');
-    if (firstFocusable) firstFocusable.focus();
-  }
+  burger.addEventListener("click", () => {
+    if (cartDropdown) cartDropdown.classList.add("hidden");
+    if (overlay) overlay.classList.add("hidden");
 
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    document.body.classList.remove('menu-open');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    burger.setAttribute('aria-expanded', 'false');
-    if (lastFocused) lastFocused.focus();
-  }
-
-  burger.addEventListener('click', () => {
-    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    mobileMenu.classList.contains("open") ? closeMenu() : openMenu();
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileMenu.classList.contains("open"))
+      closeMenu();
   });
 }
 
 // ==================== ХОВАННЯ HEADER ====================
-const headerEl = document.querySelector('header');
+const headerEl = document.querySelector("header");
 let lastScroll = window.scrollY;
 
-window.addEventListener('scroll', () => {
-  if (document.body.classList.contains('menu-open')) return;
+window.addEventListener("scroll", () => {
+  if (document.body.classList.contains("menu-open")) return;
   const currentScroll = window.scrollY;
   if (currentScroll > lastScroll && currentScroll > 100) {
-    headerEl.classList.add('hide');
+    headerEl.classList.add("hide");
   } else {
-    headerEl.classList.remove('hide');
+    headerEl.classList.remove("hide");
   }
   lastScroll = currentScroll;
 });
 
 // ==================== КОШИК ====================
-document.addEventListener('DOMContentLoaded', () => {
-  const cartIcon = document.querySelector('.cart-icon');
-  const cartDropdown = document.getElementById('cart-dropdown');
-  const cartItemsContainer = document.getElementById('cart-items');
-  const cartEmptyEl = document.getElementById('cart-empty');
-  const cartTotalEl = document.getElementById('cart-total');
-  const cartCountEl = document.getElementById('cart-count');
-  const cartItemCountEl = document.getElementById('cart-item-count');
-  const removeAllBtn = document.getElementById('remove-all');
-  const checkoutLink = document.getElementById('checkout');
+document.addEventListener("DOMContentLoaded", () => {
+  const cartIcon = document.querySelector(".cart-icon");
+  const cartDropdown = document.getElementById("cart-dropdown");
+  const cartItemsContainer = document.getElementById("cart-items");
+  const cartEmptyEl = document.getElementById("cart-empty");
+  const cartTotalEl = document.getElementById("cart-total");
+  const cartCountEl = document.getElementById("cart-count");
+  const cartItemCountEl = document.getElementById("cart-item-count");
+  const removeAllBtn = document.getElementById("remove-all");
+  const checkoutLink = document.getElementById("checkout");
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   function updateCart() {
     if (!cartItemsContainer) return;
 
-    cartItemsContainer.innerHTML = '';
+    cartItemsContainer.innerHTML = "";
 
     let total = 0;
     let itemCount = 0;
 
     cart.forEach((item, index) => {
-      const div = document.createElement('div');
-      div.classList.add('cart-item');
+      const div = document.createElement("div");
+      div.classList.add("cart-item");
       div.innerHTML = `
         <img src="${item.image}" alt="${item.name}" class="cart-item-img">
         <div class="cart-item-details">
@@ -99,25 +112,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const isEmpty = cart.length === 0;
 
     if (isEmpty) {
-      cartEmptyEl?.classList.remove('hidden');
-      cartItemsContainer?.classList.add('hidden');
-      cartTotalEl?.classList.add('hidden');
-      checkoutLink && (checkoutLink.style.display = 'none');
-      removeAllBtn && (removeAllBtn.style.display = 'none');
+      cartEmptyEl?.classList.remove("hidden");
+      cartItemsContainer?.classList.add("hidden");
+      cartTotalEl?.classList.add("hidden");
+      checkoutLink && (checkoutLink.style.display = "none");
+      removeAllBtn && (removeAllBtn.style.display = "none");
     } else {
-      cartEmptyEl?.classList.add('hidden');
-      cartItemsContainer?.classList.remove('hidden');
-      cartTotalEl?.classList.remove('hidden');
-      checkoutLink && (checkoutLink.style.display = 'block');
-      removeAllBtn && (removeAllBtn.style.display = 'block');
+      cartEmptyEl?.classList.add("hidden");
+      cartItemsContainer?.classList.remove("hidden");
+      cartTotalEl?.classList.remove("hidden");
+      checkoutLink && (checkoutLink.style.display = "block");
+      removeAllBtn && (removeAllBtn.style.display = "block");
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   // Додавання товару
-  document.querySelectorAll('.btn.add-to-cart').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  document.querySelectorAll(".btn.add-to-cart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
 
       const name = btn.dataset.name;
@@ -125,11 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const image = btn.dataset.image;
 
       // Беремо кількість з інпута
-      const container = btn.closest('.add-to-cart-wrapper') || btn.closest('.add-to-cart');
-      const qtyInput = container ? container.querySelector('input[type="number"]') : null;
+      const container =
+        btn.closest(".add-to-cart-wrapper") || btn.closest(".add-to-cart");
+      const qtyInput = container
+        ? container.querySelector('input[type="number"]')
+        : null;
       const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value)) || 1 : 1;
 
-      const existing = cart.find(item => item.name === name);
+      const existing = cart.find((item) => item.name === name);
       if (existing) {
         existing.quantity += qty;
       } else {
@@ -138,24 +154,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       updateCart();
 
-      const notification = document.createElement('div');
-      notification.textContent = '✅ Додано в кошик!';
-      notification.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#d87d4a; color:white; padding:15px 25px; border-radius:8px; font-weight:bold; z-index:9999;';
+      const notification = document.createElement("div");
+      notification.textContent = "✅ Added to cart!";
+      notification.style.cssText =
+        "position:fixed; bottom:20px; right:20px; background:#d87d4a; color:white; padding:15px 25px; border-radius:8px; font-weight:bold; z-index:9999; font-size:16px;";
       document.body.appendChild(notification);
       setTimeout(() => notification.remove(), 2000);
     });
   });
 
-  document.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll(".qty-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       const input = btn.parentElement.querySelector('input[type="number"]');
       if (!input) return;
 
       let value = parseInt(input.value) || 1;
 
-      if (btn.dataset.action === 'minus') {
+      if (btn.dataset.action === "minus") {
         value = Math.max(1, value - 1);
-      } else if (btn.dataset.action === 'plus') {
+      } else if (btn.dataset.action === "plus") {
         value++;
       }
 
@@ -165,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Зміна кількості в кошику
   if (cartItemsContainer) {
-    cartItemsContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains('cart-qty-btn')) {
+    cartItemsContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("cart-qty-btn")) {
         e.stopPropagation();
         e.stopImmediatePropagation();
 
@@ -179,32 +196,339 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.splice(index, 1);
           }
           updateCart();
-        };
+        }
       }
     });
   }
-
+  console.log("dropdown:", document.getElementById("cart-dropdown"));
   // Remove all
   if (removeAllBtn) {
-    removeAllBtn.addEventListener('click', () => {
+    removeAllBtn.addEventListener("click", () => {
       cart = [];
       updateCart();
     });
   }
 
   // Відкриття/закриття кошика
-  if (cartIcon && cartDropdown) {
-    cartIcon.addEventListener('click', () => {
-      cartDropdown.classList.toggle('hidden');
+  if (cartIcon && cartDropdown && overlay) {
+    cartIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      if (mobileMenu && mobileMenu.classList.contains("open")) {
+        closeMenu();
+      }
+
+      const isHidden = cartDropdown.classList.toggle("hidden");
+      overlay.classList.toggle("hidden", isHidden);
+    });
+
+    overlay.addEventListener("click", () => {
+      cartDropdown.classList.add("hidden");
+      overlay.classList.add("hidden");
     });
   }
 
-  document.addEventListener('click', (e) => {
-    if (cartDropdown && !cartDropdown.contains(e.target) && !cartIcon.contains(e.target)) {
-      cartDropdown.classList.add('hidden');
+  document.addEventListener("click", (e) => {
+  if (
+    overlay &&
+    cartDropdown &&
+    cartIcon &&
+    !cartDropdown.contains(e.target) &&
+    !cartIcon.contains(e.target) &&
+    !overlay.contains(e.target)
+  ) {
+    cartDropdown.classList.add("hidden");
+    overlay.classList.add("hidden");
+  }
+});
+
+  // Ініціалізація
+  updateCart();
+});
+
+////////////////// PAGE CHECKOUT ///////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (
+    !window.location.pathname.includes("checkout.html") &&
+    !window.location.href.includes("checkout.html")
+  )
+    return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // === Елементи ===
+  const form = document.getElementById("checkout-form");
+  const continueBtn = document.getElementById("continue-pay");
+  const successModal = document.getElementById("success-modal");
+  const backHomeBtn = document.getElementById("back-to-home");
+
+  // Payment toggle
+  const paymentRadios = document.querySelectorAll('input[name="payment"]');
+  const eMoneyFields = document.getElementById("e-money-fields");
+  const cashMessage = document.getElementById("cash-message");
+
+  function updatePaymentUI() {
+    const selectedValue = document.querySelector(
+      'input[name="payment"]:checked',
+    )?.value;
+    const isEMoney = selectedValue === "e-money";
+
+    eMoneyFields.classList.toggle("hidden", !isEMoney);
+    cashMessage.classList.toggle("hidden", isEMoney);
+
+    // required тільки коли e-money активний
+    eMoneyFields.querySelectorAll("input").forEach((input) => {
+      isEMoney
+        ? input.setAttribute("required", "")
+        : input.removeAttribute("required");
+    });
+  }
+
+  paymentRadios.forEach((radio) => {
+    radio.addEventListener("change", updatePaymentUI);
+  });
+  updatePaymentUI(); // початковий стан
+
+  // === SUMMARY ===
+  const summaryItemsEl = document.getElementById("summary-items");
+  const summaryTotalEl = document.getElementById("summary-total");
+  const shippingEl = document.getElementById("summary-shipping");
+  const vatEl = document.getElementById("vat");
+  const grandTotalEl = document.getElementById("grand-total");
+
+  function renderSummary() {
+    if (!summaryItemsEl) return;
+    summaryItemsEl.innerHTML = "";
+    let subtotal = 0;
+
+    cart.forEach((item) => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+
+      const div = document.createElement("div");
+      div.className = "summary-item";
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="summary-item-info">
+          <div class="summary-item-header">
+            <p class="manrope-bold">${item.name}</p>
+            <p class="sum manrope-bold">x${item.quantity}</p>
+          </div>
+          <p class="opacity-50 manrope-bold">$${item.price.toLocaleString()}</p>
+        </div>
+      `;
+      summaryItemsEl.appendChild(div);
+    });
+
+    const vat = Math.round(subtotal * 0.2);
+    const shipping = 50;
+    const grandTotal = subtotal + shipping + vat;
+
+    summaryTotalEl.textContent = `$${subtotal.toLocaleString()}`;
+    shippingEl.textContent = `$${shipping}`;
+    vatEl.textContent = `$${vat.toLocaleString()}`;
+    grandTotalEl.textContent = `$${grandTotal.toLocaleString()}`;
+
+    window.currentGrandTotal = grandTotal;
+  }
+
+  // === SUCCESS MODAL ===
+  function showSuccessModal() {
+    if (cart.length === 0) return;
+
+    const firstItem = cart[0];
+    const otherItems = cart.slice(1);
+    const otherCount = otherItems.length;
+
+    // Перший товар
+    document.getElementById("modal-first-item").innerHTML = `
+      <img src="${firstItem.image}" alt="${firstItem.name}">
+      <div class="modal-info">
+        <div class="modal-item-header">
+        <p class="manrope-bold">${firstItem.name}</p>
+        <p class="sum manrope-bold">×${firstItem.quantity}</p>
+        </div>
+        <p class="opacity-50 manrope-bold">$${firstItem.price.toLocaleString()}</p>
+      </div>
+    `;
+
+    const otherEl = document.getElementById("modal-other-items");
+    otherEl.innerHTML = "";
+
+    if (otherCount > 0) {
+      // Список прихований через style.display
+      const extraItemsHTML = otherItems
+        .map(
+          (item) => `
+        <div class="modal-extra-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="modal-info">
+            <div class="modal-item-header">
+              <p class="manrope-bold">${item.name}</p>
+              <p class="sum manrope-bold">×${item.quantity}</p>
+            </div>
+            <p class="opacity-50 manrope-bold">$${item.price.toLocaleString()}</p>
+          </div>
+        </div>
+      `,
+        )
+        .join("");
+
+      otherEl.innerHTML = `
+      <div id="other-list">
+      ${extraItemsHTML}
+      </div>
+      <div class="modal-divider"></div>
+        <button id="other-toggle" class="other-count ">and ${otherCount} other item(s)</button>
+      `;
+
+      let expanded = false;
+      const toggleBtn = document.getElementById("other-toggle");
+      const list = document.getElementById("other-list");
+
+      toggleBtn.addEventListener("click", () => {
+        expanded = !expanded;
+        list.style.display = expanded ? "flex" : "none";
+        toggleBtn.textContent = expanded
+          ? "View less"
+          : `and ${otherCount} other item(s)`;
+      });
+    }
+
+    // Grand Total
+    document.getElementById("modal-grand-total").textContent =
+      `$${window.currentGrandTotal.toLocaleString()}`;
+
+    successModal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  // === CONTINUE & PAY ===
+  continueBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    if (form.checkValidity()) {
+      showSuccessModal();
+      localStorage.removeItem("cart"); // очищаємо кошик після замовлення
+    } else {
+      form.reportValidity();
+    }
+  });
+
+  // === BACK TO HOME ===
+  backHomeBtn.addEventListener("click", () => {
+    successModal.classList.add("hidden");
+    document.body.style.overflow = "auto";
+    window.location.href = "index.html";
+  });
+
+  // Закриття модалки по фону та Esc
+  successModal.addEventListener("click", (e) => {
+    if (e.target === successModal) {
+      successModal.classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !successModal.classList.contains("hidden")) {
+      successModal.classList.add("hidden");
+      document.body.style.overflow = "auto";
     }
   });
 
   // Ініціалізація
-  updateCart();
+  renderSummary();
+});
+
+/// ==================== ВАЛІДАЦІЯ ПОЛІВ ====================
+const allInputs = document.querySelectorAll("#checkout-form input");
+
+allInputs.forEach((input) => {
+  input.addEventListener("blur", () => {
+    const wrapper = input.closest(".field-wrapper");
+    if (!wrapper) return;
+
+    // Показуємо помилку ТІЛЬКИ якщо щось введено, але невалідно
+    if (input.value.trim() !== "" && !input.checkValidity()) {
+      wrapper.classList.add("invalid");
+    } else {
+      wrapper.classList.remove("invalid");
+    }
+  });
+
+  // Знімаємо помилку як тільки починають виправляти
+  input.addEventListener("input", () => {
+    const wrapper = input.closest(".field-wrapper");
+    if (!wrapper) return;
+    if (input.checkValidity()) {
+      wrapper.classList.remove("invalid");
+    }
+  });
+});
+
+// ==================== ZOOM на головному фото ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const productImgWrapper = document.querySelector(".product-img");
+  const productImg = productImgWrapper?.querySelector("img");
+  if (!productImg || !productImgWrapper) return;
+
+  const zoomLens = document.createElement("div");
+  zoomLens.classList.add("zoom-lens");
+  productImgWrapper.appendChild(zoomLens);
+
+  const zoomResult = document.createElement("div");
+  zoomResult.classList.add("zoom-result");
+  productImgWrapper.appendChild(zoomResult);
+
+  const ZOOM = 1.5;
+
+  function updateZoom(e) {
+    const rect = productImg.getBoundingClientRect();
+    const lensW = zoomLens.offsetWidth;
+    const lensH = zoomLens.offsetHeight;
+
+    // Позиція курсора відносно зображення
+    let x = e.clientX - rect.left - lensW / 2;
+    let y = e.clientY - rect.top - lensH / 2;
+
+    // Обмежуємо лінзу в межах картинки
+    x = Math.max(0, Math.min(x, rect.width - lensW));
+    y = Math.max(0, Math.min(y, rect.height - lensH));
+
+    zoomLens.style.left = x + "px";
+    zoomLens.style.top = y + "px";
+
+    // Точний розрахунок backgroundPosition
+    // Ліва верхня точка лінзи / (ширина картинки - ширина лінзи) * 100
+    const bgX = (x / (rect.width - lensW)) * 100;
+    const bgY = (y / (rect.height - lensH)) * 100;
+
+    zoomResult.style.backgroundImage = `url(${productImg.currentSrc})`;
+    zoomResult.style.backgroundSize = `${rect.width * ZOOM}px ${rect.height * ZOOM}px`;
+    zoomResult.style.backgroundPosition = `${bgX}% ${bgY}%`;
+  }
+
+  productImgWrapper.addEventListener("mouseenter", () => {
+  if (window.innerWidth <= 1024) return; // ← ця перевірка
+  zoomLens.style.display = "block";
+  zoomResult.style.display = "block";
+});
+
+productImgWrapper.addEventListener("mousemove", (e) => {
+  if (window.innerWidth <= 1024) return; // ← і тут
+  updateZoom(e);
+});
+  if (productImg) {
+  productImg.addEventListener("click", () => {
+    if (window.innerWidth > 1024) return;
+    productImg.classList.toggle("zoomed");
+  });
+}
 });
