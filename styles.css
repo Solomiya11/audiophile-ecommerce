@@ -904,7 +904,9 @@ td.description {
   z-index: 100;
   background-color: #fff;
 }
-
+.zoom-result {
+  pointer-events: none;
+}
 /* Checkout */
 .bd-checkout {
   background-color: var(--dark-gray);

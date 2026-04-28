@@ -475,60 +475,82 @@ allInputs.forEach((input) => {
 
 // ==================== ZOOM на головному фото ====================
 document.addEventListener("DOMContentLoaded", () => {
-  const productImgWrapper = document.querySelector(".product-img");
-  const productImg = productImgWrapper?.querySelector("img");
-  if (!productImg || !productImgWrapper) return;
-
-  const zoomLens = document.createElement("div");
-  zoomLens.classList.add("zoom-lens");
-  productImgWrapper.appendChild(zoomLens);
-
-  const zoomResult = document.createElement("div");
-  zoomResult.classList.add("zoom-result");
-  productImgWrapper.appendChild(zoomResult);
-
-  const ZOOM = 1.5;
-
-  function updateZoom(e) {
-    const rect = productImg.getBoundingClientRect();
-    const lensW = zoomLens.offsetWidth;
-    const lensH = zoomLens.offsetHeight;
-
-    // Позиція курсора відносно зображення
-    let x = e.clientX - rect.left - lensW / 2;
-    let y = e.clientY - rect.top - lensH / 2;
-
-    // Обмежуємо лінзу в межах картинки
-    x = Math.max(0, Math.min(x, rect.width - lensW));
-    y = Math.max(0, Math.min(y, rect.height - lensH));
-
-    zoomLens.style.left = x + "px";
-    zoomLens.style.top = y + "px";
-
-    // Точний розрахунок backgroundPosition
-    // Ліва верхня точка лінзи / (ширина картинки - ширина лінзи) * 100
-    const bgX = (x / (rect.width - lensW)) * 100;
-    const bgY = (y / (rect.height - lensH)) * 100;
-
-    zoomResult.style.backgroundImage = `url(${productImg.currentSrc})`;
-    zoomResult.style.backgroundSize = `${rect.width * ZOOM}px ${rect.height * ZOOM}px`;
-    zoomResult.style.backgroundPosition = `${bgX}% ${bgY}%`;
+   if (!window.location.pathname.includes("product-")) {
+    // Забираємо курсор збільшення на сторінках груп товарів
+    document.querySelectorAll(".product-img").forEach((wrapper) => {
+      wrapper.style.cursor = "default";
+    });
+    return;
   }
 
-  productImgWrapper.addEventListener("mouseenter", () => {
-  if (window.innerWidth <= 1024) return; // ← ця перевірка
-  zoomLens.style.display = "block";
-  zoomResult.style.display = "block";
-});
+  const allWrappers = document.querySelectorAll(".product-img");
+  allWrappers.forEach((productImgWrapper) => {
+    const productImg = productImgWrapper.querySelector("img");
+    if (!productImg) return;
 
-productImgWrapper.addEventListener("mousemove", (e) => {
-  if (window.innerWidth <= 1024) return; // ← і тут
-  updateZoom(e);
-});
-  if (productImg) {
-  productImg.addEventListener("click", () => {
-    if (window.innerWidth > 1024) return;
-    productImg.classList.toggle("zoomed");
+    const zoomLens = document.createElement("div");
+    zoomLens.classList.add("zoom-lens");
+    productImgWrapper.appendChild(zoomLens);
+
+    const zoomResult = document.createElement("div");
+    zoomResult.classList.add("zoom-result");
+    productImgWrapper.appendChild(zoomResult);
+
+    const ZOOM = 1.5;
+    let zoomActive = false;
+
+    function updateZoom(e) {
+      const rect = productImg.getBoundingClientRect();
+      const lensW = zoomLens.offsetWidth;
+      const lensH = zoomLens.offsetHeight;
+
+      let x = e.clientX - rect.left - lensW / 2;
+      let y = e.clientY - rect.top - lensH / 2;
+
+      x = Math.max(0, Math.min(x, rect.width - lensW));
+      y = Math.max(0, Math.min(y, rect.height - lensH));
+
+      zoomLens.style.left = x + "px";
+      zoomLens.style.top = y + "px";
+
+      const bgX = (x / (rect.width - lensW)) * 100;
+      const bgY = (y / (rect.height - lensH)) * 100;
+
+      zoomResult.style.backgroundImage = `url(${productImg.currentSrc})`;
+      zoomResult.style.backgroundSize = `${rect.width * ZOOM}px ${rect.height * ZOOM}px`;
+      zoomResult.style.backgroundPosition = `${bgX}% ${bgY}%`;
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      if (window.innerWidth <= 1024) return;
+
+      const rect = productImgWrapper.getBoundingClientRect();
+      const isOverImage =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (isOverImage) {
+        if (!zoomActive) {
+          zoomLens.style.display = "block";
+          zoomResult.style.display = "block";
+          zoomActive = true;
+        }
+        updateZoom(e);
+      } else {
+        if (zoomActive) {
+          zoomLens.style.display = "none";
+          zoomResult.style.display = "none";
+          zoomActive = false;
+        }
+      }
+    });
+
+    // Мобільний клік
+    productImg.addEventListener("click", () => {
+      if (window.innerWidth > 1024) return;
+      productImg.classList.toggle("zoomed");
+    });
   });
-}
 });
