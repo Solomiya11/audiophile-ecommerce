@@ -554,3 +554,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// === DEMO CHECKOUT FUNCTION ===
+document.addEventListener('DOMContentLoaded', () => {
+    const demoBtn = document.getElementById('demo-checkout-btn');
+    
+    if (demoBtn) {
+        demoBtn.addEventListener('click', loadDemoCartAndGoToCheckout);
+    }
+});
+
+function loadDemoCartAndGoToCheckout() {
+    // Приклад товарів (змінюй id і кількість за потребою)
+    const demoItems = [
+        {
+            id: 1,
+            name: "XX99 MK II",
+            price: 2999,
+            quantity: 2,
+            image: "./assets/product-xx99-mark-two-headphones/desktop/image-product.jpg"  // зміни шлях якщо треба
+        },
+        {
+            id: 2,
+            name: "ZX9",
+            price: 4500,
+            quantity: 1,
+            image: "./assets/product-zx9-speaker/desktop/image-product.jpg"
+        }
+    ];
+
+    localStorage.setItem('cart', JSON.stringify(demoItems));
+    
+    if (typeof updateCartCount === 'function') {
+        updateCartCount();
+    }
+
+    // Переходимо на checkout
+    window.location.href = 'checkout.html';
+}

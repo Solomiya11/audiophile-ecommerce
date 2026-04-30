@@ -1,37 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-
-  <title>Frontend Mentor | Audiophile e-commerce website</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <title>Frontend Mentor | Audiophile e-commerce website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
-</head>
+  </head>
 
-<body>
-  <header class="header">
+  <body>
+    <header class="header">
       <div class="container">
         <div class="header_top nav">
-          <button class="burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <button
+            class="burger"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+          >
             <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
               <g fill="#FFF" fill-rule="evenodd">
                 <path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z" />
               </g>
             </svg>
           </button>
-          <a href="index.html"><img
-            src="./assets/shared/desktop/logo.svg"
-            alt="Logo company Audiophile"
-            class="logo"/></a>
+          <a href="index.html"
+            ><img
+              src="./assets/shared/desktop/logo.svg"
+              alt="Logo company Audiophile"
+              class="logo"
+          /></a>
           <nav aria-label="Main navigation" class="nav-wrapper">
             <ul class="nav-list manrope-bold">
               <li><a href="index.html">Home</a></li>
@@ -39,70 +50,106 @@
               <li><a href="speakers.html">Speakers</a></li>
               <li><a href="earphones.html">Earphones</a></li>
             </ul>
-            
-            <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
-             <div class="mobile-menu_inner">
-               <div class="mobile-categories">
-                 <div class="category category_headphones">
-                   <img
-                     src="./assets/shared/desktop/image-category-thumbnail-headphones.png"
-                     alt="XX99 Mark I Headphones"
-                     class="category-img"
-                     />
-                     <h2 class="manrope-bold">Headphones</h2>
-                     <a href="headphones.html" class="btn-light manrope-bold"
-                     >Shop<img
-                     src="./assets/shared/desktop/icon-arrow-right.svg"
-                     alt="Go to the store catalog"
-                     /></a>
-                    </div>
-                    <div class="category category_speakers">
-                      <img
+
+            <div
+              id="mobile-menu"
+              class="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-hidden="true"
+            >
+              <div class="mobile-menu_inner">
+                <div class="mobile-categories">
+                  <div class="category category_headphones">
+                    <img
+                      src="./assets/shared/desktop/image-category-thumbnail-headphones.png"
+                      alt="XX99 Mark I Headphones"
+                      class="category-img"
+                    />
+                    <h2 class="manrope-bold">Headphones</h2>
+                    <a href="headphones.html" class="btn-light manrope-bold"
+                      >Shop<img
+                        src="./assets/shared/desktop/icon-arrow-right.svg"
+                        alt="Go to the store catalog"
+                    /></a>
+                  </div>
+                  <div class="category category_speakers">
+                    <img
                       src="./assets/shared/desktop/image-category-thumbnail-speakers.png"
                       alt="ZX9 speaker"
                       class="category-img"
-                      />
-                      <h2 class="manrope-bold">Speakers</h2>
-                      <a href="speakers.html" class="btn-light manrope-bold"
+                    />
+                    <h2 class="manrope-bold">Speakers</h2>
+                    <a href="speakers.html" class="btn-light manrope-bold"
                       >Shop<img
-                      src="./assets/shared/desktop/icon-arrow-right.svg"
-                      alt="Go to the store catalog"
-                      /></a>
-                    </div>
-                    <div class="category category_earphones">
-                      <img
+                        src="./assets/shared/desktop/icon-arrow-right.svg"
+                        alt="Go to the store catalog"
+                    /></a>
+                  </div>
+                  <div class="category category_earphones">
+                    <img
                       src="./assets/shared/desktop/image-category-thumbnail-earphones.png"
                       alt="YX1 wireless earphones"
                       class="category-img"
-                      />
-                      <h2 class="manrope-bold">Earphones</h2>
-                      <a href="earphones.html" class="btn-light manrope-bold"
+                    />
+                    <h2 class="manrope-bold">Earphones</h2>
+                    <a href="earphones.html" class="btn-light manrope-bold"
                       >Shop<img
-                      src="./assets/shared/desktop/icon-arrow-right.svg"
-                      alt="Go to the store catalog"
-                      /></a>
-                    </div>
+                        src="./assets/shared/desktop/icon-arrow-right.svg"
+                        alt="Go to the store catalog"
+                    /></a>
                   </div>
                 </div>
               </div>
-            </nav>
-              
-      
-          <button class="cart-icon" aria-label="Open shopping cart">
-            <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M8.625 15.833c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.054-.935-2.054-2.083 0-1.15.922-2.084 2.054-2.084zm9.857 0c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.053-.935-2.053-2.083 0-1.15.92-2.084 2.053-2.084zm-9.857 1.39a.69.69 0 00-.685.694.69.69 0 00.685.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zm9.857 0a.69.69 0 00-.684.694.69.69 0 00.684.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zM4.717 0c.316 0 .59.215.658.517l.481 2.122h16.47a.68.68 0 01.538.262c.127.166.168.38.11.579l-2.695 9.236a.672.672 0 01-.648.478H7.41a.667.667 0 00-.673.66c0 .364.303.66.674.66h12.219c.372 0 .674.295.674.66 0 .364-.302.66-.674.66H7.412c-1.115 0-2.021-.889-2.021-1.98 0-.812.502-1.511 1.218-1.816L4.176 1.32H.674A.667.667 0 010 .66C0 .296.302 0 .674 0zm16.716 3.958H6.156l1.797 7.917h11.17l2.31-7.917z"
-                fill="#FFF"
-                fill-rule="nonzero"
-              />
-            </svg>
-            <span id="cart-count">0</span>
-          </button>
+            </div>
+          </nav>
+
+          <div class="header-actions">
+            <button
+              class="demo-checkout"
+              id="demo-checkout-btn"
+              aria-label="Demo Checkout"
+            >
+              <div class="demo-wrapper">
+                <svg
+                  width="30"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 12V14M12 6H5C3.89543 6 3 6.89543 3 8V14M3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14M3 14H21M23 4L18 9L16 7"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="demo-label manrope-medium">Demo</span>
+              </div>
+            </button>
+
+            <button class="cart-icon" aria-label="Open shopping cart">
+              <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M8.625 15.833c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.054-.935-2.054-2.083 0-1.15.922-2.084 2.054-2.084zm9.857 0c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.053-.935-2.053-2.083 0-1.15.92-2.084 2.053-2.084zm-9.857 1.39a.69.69 0 00-.685.694.69.69 0 00.685.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zm9.857 0a.69.69 0 00-.684.694.69.69 0 00.684.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zM4.717 0c.316 0 .59.215.658.517l.481 2.122h16.47a.68.68 0 01.538.262c.127.166.168.38.11.579l-2.695 9.236a.672.672 0 01-.648.478H7.41a.667.667 0 00-.673.66c0 .364.303.66.674.66h12.219c.372 0 .674.295.674.66 0 .364-.302.66-.674.66H7.412c-1.115 0-2.021-.889-2.021-1.98 0-.812.502-1.511 1.218-1.816L4.176 1.32H.674A.667.667 0 010 .66C0 .296.302 0 .674 0zm16.716 3.958H6.156l1.797 7.917h11.17l2.31-7.917z"
+                  fill="#FFF"
+                  fill-rule="nonzero"
+                />
+              </svg>
+              <span id="cart-count">0</span>
+            </button>
+          </div>
         </div>
         <div id="cart-dropdown" class="cart-dropdown hidden">
           <div class="cart-header">
-            <h3 class="manrope-bold">Cart (<span id="cart-item-count">0</span>)</h3>
-            <button id="remove-all" class="btn-light manrope-medium">Remove all</button>
+            <h3 class="manrope-bold">
+              Cart (<span id="cart-item-count">0</span>)
+            </h3>
+            <button id="remove-all" class="btn-light manrope-medium">
+              Remove all
+            </button>
           </div>
           <div id="cart-items"></div>
           <div id="cart-empty" class="cart-empty hidden">
@@ -113,7 +160,9 @@
             <span class="manrope-medium">Total</span>
             <span id="cart-total" class="manrope-bold">$0</span>
           </div>
-          <a href="checkout.html" id="checkout" class="manrope-bold">Checkout</a>
+          <a href="checkout.html" id="checkout" class="manrope-bold"
+            >Checkout</a
+          >
         </div>
       </div>
     </header>
@@ -122,23 +171,34 @@
       <section class="back container">
         <a href="speakers.html" class="manrope-medium">Go back</a>
       </section>
-      
+
       <section class="container product-speakers">
         <div class="product-speaker-img product-img">
-            <picture>
-              <source
+          <picture>
+            <source
               media="(max-width: 576px)"
-              srcset="./assets/product-zx7-speaker/mobile/image-category-page-preview.jpg">
-              <source
+              srcset="
+                ./assets/product-zx7-speaker/mobile/image-category-page-preview.jpg
+              "
+            />
+            <source
               media="(max-width: 1024px)"
-              srcset="./assets/product-zx7-speaker/tablet/image-category-page-preview.jpg">
-              <img src="./assets/product-zx7-speaker/desktop/image-category-page-preview.jpg" alt="ZX7 Speaker">
-            </picture>
+              srcset="
+                ./assets/product-zx7-speaker/tablet/image-category-page-preview.jpg
+              "
+            />
+            <img
+              src="./assets/product-zx7-speaker/desktop/image-category-page-preview.jpg"
+              alt="ZX7 Speaker"
+            />
+          </picture>
         </div>
         <div class="product-speakers-content">
-          <h2 class="manrope-bold name-product">ZX7<br>Speaker</h2>
+          <h2 class="manrope-bold name-product">ZX7<br />Speaker</h2>
           <p class="manrope-medium description-product description">
-          Stream high quality sound wirelessly with minimal to no loss. The ZX7 speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.
+            Stream high quality sound wirelessly with minimal to no loss. The
+            ZX7 speaker uses high-end audiophile components that represents the
+            top of the line powered speakers for home or studio use.
           </p>
           <p class="manrope-bold price-product">$ 3,500</p>
 
@@ -148,13 +208,15 @@
               <input type="number" value="1" min="1" class="manrope-bold" />
               <button class="qty-btn" data-action="plus">&#043;</button>
             </div>
-              <a href="#" 
+            <a
+              href="#"
               id="addToCart"
               data-name="ZX7"
               data-price="3500"
               data-image="./assets/cart/image-zx7-speaker.jpg"
               class="btn add-to-cart"
-              >Add to cart</a>
+              >Add to cart</a
+            >
           </div>
         </div>
       </section>
@@ -163,10 +225,20 @@
         <div>
           <h3 class="manrope-bold title">Features</h3>
           <p class="manrope-medium description">
-            Reap the advantages of a flat diaphragm tweeter cone. This provides a fast response rate and  excellent high frequencies that lower tiered bookshelf speakers cannot provide. The woofers are made from aluminum that produces a unique and clear sound. XLR inputs allow you to connect to a mixer for  more advanced usage.
-            <br>
-            <br>
-            The ZX7 speaker is the perfect blend of stylish design and high performance. It houses an encased MDF wooden enclosure which minimises acoustic resonance. Dual connectivity allows pairing through bluetooth or traditional optical and RCA input. Switch input sources and control volume at your finger tips with the included wireless remote. This versatile speaker is equipped to deliver an authentic listening experience.
+            Reap the advantages of a flat diaphragm tweeter cone. This provides
+            a fast response rate and excellent high frequencies that lower
+            tiered bookshelf speakers cannot provide. The woofers are made from
+            aluminum that produces a unique and clear sound. XLR inputs allow
+            you to connect to a mixer for more advanced usage.
+            <br />
+            <br />
+            The ZX7 speaker is the perfect blend of stylish design and high
+            performance. It houses an encased MDF wooden enclosure which
+            minimises acoustic resonance. Dual connectivity allows pairing
+            through bluetooth or traditional optical and RCA input. Switch input
+            sources and control volume at your finger tips with the included
+            wireless remote. This versatile speaker is equipped to deliver an
+            authentic listening experience.
           </p>
         </div>
         <div class="in-box">
@@ -195,35 +267,50 @@
           </table>
         </div>
       </section>
-      
+
       <section class="container">
-         <div class="gallery">
+        <div class="gallery">
           <picture class="picture-1">
             <source
-            media="(max-width: 576px)"
-            srcset="./assets//product-zx7-speaker/mobile/image-gallery-1.jpg">
+              media="(max-width: 576px)"
+              srcset="./assets//product-zx7-speaker/mobile/image-gallery-1.jpg"
+            />
             <source
-            media="(max-width:1024px)"
-            srcset="./assets/product-zx7-speaker/tablet/image-gallery-1.jpg">
-            <img src="./assets/product-zx7-speaker/desktop/image-gallery-1.jpg" alt="pictures for description">
+              media="(max-width:1024px)"
+              srcset="./assets/product-zx7-speaker/tablet/image-gallery-1.jpg"
+            />
+            <img
+              src="./assets/product-zx7-speaker/desktop/image-gallery-1.jpg"
+              alt="pictures for description"
+            />
           </picture>
           <picture class="picture-2">
             <source
-            media="(max-width:576px)"
-            srcset="./assets/product-zx7-speaker/mobile/image-gallery-2.jpg">
+              media="(max-width:576px)"
+              srcset="./assets/product-zx7-speaker/mobile/image-gallery-2.jpg"
+            />
             <source
-            media="(max-width:1024px)"
-            srcset="./assets/product-zx7-speaker/tablet/image-gallery-2.jpg">
-            <img src="./assets/product-zx7-speaker/desktop/image-gallery-2.jpg" alt="pictures for description">
+              media="(max-width:1024px)"
+              srcset="./assets/product-zx7-speaker/tablet/image-gallery-2.jpg"
+            />
+            <img
+              src="./assets/product-zx7-speaker/desktop/image-gallery-2.jpg"
+              alt="pictures for description"
+            />
           </picture>
           <picture class="picture-3">
             <source
-            media="(max-width:576px)"
-            srcset="./assets/product-zx7-speaker/mobile/image-gallery-3.jpg">
-            <source 
-            media="(max-width: 1024px)" 
-            srcset="./assets/product-zx7-speaker/tablet/image-gallery-3.jpg">
-            <img src="./assets/product-zx7-speaker/desktop/image-gallery-3.jpg" alt="pictures for description">
+              media="(max-width:576px)"
+              srcset="./assets/product-zx7-speaker/mobile/image-gallery-3.jpg"
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcset="./assets/product-zx7-speaker/tablet/image-gallery-3.jpg"
+            />
+            <img
+              src="./assets/product-zx7-speaker/desktop/image-gallery-3.jpg"
+              alt="pictures for description"
+            />
           </picture>
         </div>
       </section>
@@ -233,41 +320,61 @@
       <section class="container categories_2 manrope-bold">
         <div class="categ">
           <picture>
-            <source 
-            media="(max-width: 576px)" 
-            srcset="./assets/shared/mobile/image-zx9-speaker.jpg">
-            <source 
-            media="(max-width: 1024px)" 
-            srcset="./assets/shared/tablet/image-zx9-speaker.jpg">
-            <img src="./assets/shared/desktop/image-zx9-speaker.jpg" alt="Speaker ZX9"
-            class="categories_2_img">
+            <source
+              media="(max-width: 576px)"
+              srcset="./assets/shared/mobile/image-zx9-speaker.jpg"
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcset="./assets/shared/tablet/image-zx9-speaker.jpg"
+            />
+            <img
+              src="./assets/shared/desktop/image-zx9-speaker.jpg"
+              alt="Speaker ZX9"
+              class="categories_2_img"
+            />
           </picture>
           <h2>ZX9 speaker</h2>
-          <a href="product-zx9-speaker.html" class="btn">See product</a> 
-       </div>
-        
-       <div class="categ">
-         <picture>
-            <source
-            media="(max-width: 576px)"
-            srcset="./assets/shared/mobile/image-xx99-mark-one-headphones.jpg">
-            <source 
-            media="(max-width: 1024px)" 
-            srcset="./assets/shared/tablet/image-xx99-mark-one-headphones.jpg">
-            <img src="./assets/shared/desktop/image-xx99-mark-one-headphones.jpg" alt="Headphone XX99 Mark I" class="categories_2_img">
-          </picture>
-         <h2>XX99 Mark I</h2>
-         <a href="product-xx99-mark-one-headphones.html" class="btn">See product</a>
+          <a href="product-zx9-speaker.html" class="btn">See product</a>
         </div>
-        
+
         <div class="categ">
           <picture>
-            <source 
-            media="(max-width: 576px)" 
-            srcset="./assets/shared/mobile/image-xx59-headphones.jpg">
-            <source media="(max-width: 1024px)" 
-            srcset="./assets/shared/tablet/image-xx59-headphones.jpg">
-            <img src="./assets/shared/desktop/image-xx59-headphones.jpg" alt="Headphone XX59" class="categories_2_img">
+            <source
+              media="(max-width: 576px)"
+              srcset="./assets/shared/mobile/image-xx99-mark-one-headphones.jpg"
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcset="./assets/shared/tablet/image-xx99-mark-one-headphones.jpg"
+            />
+            <img
+              src="./assets/shared/desktop/image-xx99-mark-one-headphones.jpg"
+              alt="Headphone XX99 Mark I"
+              class="categories_2_img"
+            />
+          </picture>
+          <h2>XX99 Mark I</h2>
+          <a href="product-xx99-mark-one-headphones.html" class="btn"
+            >See product</a
+          >
+        </div>
+
+        <div class="categ">
+          <picture>
+            <source
+              media="(max-width: 576px)"
+              srcset="./assets/shared/mobile/image-xx59-headphones.jpg"
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcset="./assets/shared/tablet/image-xx59-headphones.jpg"
+            />
+            <img
+              src="./assets/shared/desktop/image-xx59-headphones.jpg"
+              alt="Headphone XX59"
+              class="categories_2_img"
+            />
           </picture>
           <h2>XX59</h2>
           <a href="product-xx59-headphones.html" class="btn">See product</a>
@@ -333,18 +440,23 @@
         <div class="info_img">
           <picture>
             <source
-            media="(max-width: 576px)"
-            srcset="./assets/shared/mobile/image-best-gear.jpg">
+              media="(max-width: 576px)"
+              srcset="./assets/shared/mobile/image-best-gear.jpg"
+            />
             <source
-            media="(max-width: 1024px)"
-            srcset="./assets/shared/tablet/image-best-gear.jpg">
-            <img src="./assets/shared/desktop/image-best-gear.jpg" alt="A man with headphones he bought in Audiophile store"/>
+              media="(max-width: 1024px)"
+              srcset="./assets/shared/tablet/image-best-gear.jpg"
+            />
+            <img
+              src="./assets/shared/desktop/image-best-gear.jpg"
+              alt="A man with headphones he bought in Audiophile store"
+            />
           </picture>
         </div>
-      </section> 
-    </main> 
+      </section>
+    </main>
 
-  <footer>
+    <footer>
       <div class="footer_fbx container">
         <div class="footer_logo_nav nav">
           <img
@@ -406,9 +518,7 @@
         </div>
       </div>
     </footer>
-  <script src="./script.js" defer></script>
-  <div id="overlay" class="overlay hidden"></div>
-
-</body>
-
+    <script src="./script.js" defer></script>
+    <div id="overlay" class="overlay hidden"></div>
+  </body>
 </html>
