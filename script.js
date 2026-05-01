@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isEmpty) {
       cartEmptyEl?.classList.remove("hidden");
       cartItemsContainer?.classList.add("hidden");
-      cartTotalEl?.classList.add("hidden");
+      cartTotalEl?.classList.add("hiddenцц");
       checkoutLink && (checkoutLink.style.display = "none");
       removeAllBtn && (removeAllBtn.style.display = "none");
     } else {
@@ -602,3 +602,75 @@ function loadDemoCartAndGoToCheckout() {
   // Переходимо на checkout
   window.location.href = "checkout.html";
 }
+
+const allProducts = [
+  {
+    name: "XX99 Mark II",
+    slug: "product-xx99-mark-two-headphones",
+    mobile: "./assets/shared/mobile/image-xx99-mark-two-headphones.jpg",
+    tablet: "./assets/shared/tablet/image-xx99-mark-two-headphones.jpg",
+    desktop: "./assets/shared/desktop/image-xx99-mark-two-headphones.jpg",
+    alt: "Headphone XX99 Mark Two"
+  },
+  {
+    name: "XX99 Mark I",
+    slug: "product-xx99-mark-one-headphones",
+    mobile: "./assets/shared/mobile/image-xx99-mark-one-headphones.jpg",
+    tablet: "./assets/shared/tablet/image-xx99-mark-one-headphones.jpg",
+    desktop: "./assets/shared/desktop/image-xx99-mark-one-headphones.jpg",
+    alt: "Headphone XX99 Mark One"
+  },
+  {
+    name: "XX59",
+    slug: "product-xx59-headphones",
+    mobile: "./assets/shared/mobile/image-xx59-headphones.jpg",
+    tablet: "./assets/shared/tablet/image-xx59-headphones.jpg",
+    desktop: "./assets/shared/desktop/image-xx59-headphones.jpg",
+    alt: "Headphone XX59"
+  },
+  {
+    name: "ZX9 Speaker",
+    slug: "product-zx9-speaker",
+    mobile: "./assets/shared/mobile/image-zx9-speaker.jpg",
+    tablet: "./assets/shared/tablet/image-zx9-speaker.jpg",
+    desktop: "./assets/shared/desktop/image-zx9-speaker.jpg",
+    alt: "Speaker ZX9"
+  },
+  {
+    name: "ZX7 Speaker",
+    slug: "product-zx7-speaker",
+    mobile: "./assets/shared/mobile/image-zx7-speaker.jpg",
+    tablet: "./assets/shared/tablet/image-zx7-speaker.jpg",
+    desktop: "./assets/shared/desktop/image-zx7-speaker.jpg",
+    alt: "Speaker ZX7"
+  },
+];
+
+function renderAlsoLike() {
+  const container = document.getElementById("also-like");
+  if (!container) return; // не продуктова сторінка — виходимо
+
+  // Визначаємо поточний slug з URL
+  const currentSlug = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(".html", "");
+
+  // Фільтруємо поточний товар і перемішуємо
+  const others = allProducts.filter(p => p.slug !== currentSlug);
+  const picked = others.sort(() => Math.random() - 0.5).slice(0, 3);
+
+  container.innerHTML = picked.map(p => `
+    <div class="categ">
+      <picture>
+        <source media="(max-width: 576px)" srcset="${p.mobile}" />
+        <source media="(max-width: 1024px)" srcset="${p.tablet}" />
+        <img src="${p.desktop}" alt="${p.alt}" class="categories_2_img" />
+      </picture>
+      <h2>${p.name}</h2>
+      <a href="./${p.slug}.html" class="btn">See product</a>
+    </div>
+  `).join("");
+}
+
+renderAlsoLike();
